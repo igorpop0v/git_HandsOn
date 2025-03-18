@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 
+#imports
 import sys, re
 from argparse import ArgumentParser
 
+#parse arguments
 parser = ArgumentParser(description = 'Classify a sequence as DNA or RNA')
 parser.add_argument("-s", "--seq", type = str, required = True, help = "Input sequence")
 parser.add_argument("-m", "--motif", type = str, required = False, help = "Motif")
 
+#check the arguments
 if len(sys.argv) == 1:
     parser.print_help()
     sys.exit(1)

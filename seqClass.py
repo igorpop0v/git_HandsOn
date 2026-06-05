@@ -23,14 +23,22 @@ args = parser.parse_args()
 # Convert sequence to uppercase to handle lowercase input
 args.seq = args.seq.upper()
 
-# Classify the input sequence as DNA, RNA, ambiguous, or invalid
+# Classify the sequence.
+# A valid DNA sequence can contain A, C, G and T, but not U.
+# A valid RNA sequence can contain A, C, G and U, but not T.
+# Sequences containing both T and U are considered invalid.
 if re.search('^[ACGTU]+$', args.seq):
-    if re.search('T', args.seq):
+    has_T = re.search('T', args.seq)
+    has_U = re.search('U', args.seq)
+
+    if has_T and not has_U:
         print ('The sequence is DNA')
-    elif re.search('U', args.seq):
+    elif has_U and not has_T:
         print ('The sequence is RNA')
-    else:
+    elif not has_T and not has_U:
         print ('The sequence can be DNA or RNA')
+    else:
+        print ('The sequence is not DNA nor RNA')
 else:
     print ('The sequence is not DNA nor RNA')
 

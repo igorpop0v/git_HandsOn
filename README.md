@@ -9,5 +9,4 @@ Usage:
 ```bash
 python seqClass.py -s ACTG
 python seqClass.py -s ACTG -m TG
-```text
-Add README
+```
